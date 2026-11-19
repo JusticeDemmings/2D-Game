@@ -17,7 +17,23 @@ namespace MohawkGame2D
         {
             Window.SetTitle("When Aliens Invade");
             Window.SetSize(800, 600);
-            Window.ClearBackground(Color.Blue);
+            Window.ClearBackground(120, 239, 250);
+
+            //Draw Sun
+            Draw.SetLineSize(0);
+            Draw.SetFillColor(255, 255, 0);
+            Draw.Rectangle(650, 50, 30, 10);
+            Draw.Rectangle(640, 60, 50, 10);
+            Draw.Rectangle(630, 70, 70, 10);
+            Draw.Rectangle(620, 80, 90, 30);
+            Draw.Rectangle(630, 110, 70, 10);
+            Draw.Rectangle(640, 120, 50, 10);
+            Draw.Rectangle(650, 130, 30, 10);
+
+            //Draw Ground
+            Draw.SetLineSize(1);
+            Draw.SetFillColor(150, 85, 20);
+            Draw.Rectangle(0, 500, 800, 100);
         }
 
         /// <summary>
