@@ -6,8 +6,6 @@ namespace MohawkGame2D;
 public class Rock
 {
 	float x2;
-
-	Vector2
 	public void Setup()
 	{
 

@@ -7,10 +7,9 @@ public class Alien2
 {
 	float x4;
 	float y2;
-
-	Vector2
 	public void Setup()
 	{
+		x4 = Random.Float(100, 800);
 
 	}
 

@@ -10,6 +10,8 @@ namespace MohawkGame2D
     /// </summary>
     public class Game
     {
+        float x6 = 160;
+        float y4 = 350;
         /// <summary>
         ///     Setup runs once before the game loop begins.
         /// </summary>
@@ -42,8 +44,48 @@ namespace MohawkGame2D
         public void Update()
         {
             //Draw Player Character
+            Draw.SetLineSize(0);
+            Draw.SetFillColor(245, 165, 5);
             Draw.Rectangle(x6, y4, 30, 10);
-            Draw.Square()
+            Draw.Rectangle(x6 - 10, y4 + 10, 60, 30);
+            Draw.Rectangle(x6, y4 + 40, 20, 10);
+            Draw.Rectangle(x6, y4 + 50, 20, 10);
+            Draw.Square(x6 - 10, y4 + 60, 20);
+            Draw.Square(x6 - 20, y4 + 70, 10);
+            Draw.Rectangle(x6, y4 + 80, 10, 30);
+            Draw.Rectangle(x6 - 10, y4 + 90, 10, 30);
+            Draw.Square(x6 - 30, y4 + 80, 20);
+            Draw.Rectangle(x6 - 60, y4 + 110, 50, 10);
+            Draw.Square(x6 - 50, y4 + 90, 20);
+            Draw.Square(x6 - 70, y4 + 100, 10);
+            Draw.Rectangle(x6 - 80, y4 + 90, 30, 10);
+            Draw.Rectangle(x6 - 80, y4 + 80, 20, 10);
+            Draw.SetFillColor(Color.Red);
+            Draw.Square(x6 + 10, y4 + 20, 10);
+            //Draw Robotics
+            Draw.SetLineSize(1);
+            Draw.SetFillColor(179, 178, 177);
+            Draw.Square(x6 + 30, y4, 10);
+            Draw.Square(x6 + 5, y4 + 15, 20);
+            Draw.Square(x6 + 40, y4 + 20, 10);
+            Draw.Square(x6 - 10, y4 + 40, 10);
+            Draw.Rectangle(x6 + 20, y4 + 50, 30, 10);
+            Draw.Rectangle(x6 + 10, y4 + 80, 20, 10);
+            Draw.Square(x6 + 20, y4 + 90, 10);
+            Draw.Square(x6 - 10, y4 + 80, 10);
+            Draw.Rectangle(x6 - 30, y4 + 100, 20, 10);
+            Draw.Square(x6 - 60, y4 + 100, 10);
+            Draw.Rectangle(x6 - 80, y4 + 60, 10, 20);
+            //Draw Legs
+            Draw.SetLineSize(0);
+            Draw.SetFillColor(245, 165, 5);
+            Draw.Rectangle(x6 - 50, y4 + 120, 10, 30);
+            Draw.Square(x6 - 50, y4 + 140, 10);
+            Draw.Square(x6 - 20, y4 + 120, 10);
+            Draw.Rectangle(x6 - 20, y4 + 140, 20, 10);
+            Draw.SetFillColor(179, 178, 177);
+            Draw.Square(x6 - 50, y4 + 140, 10);
+            Draw.Square(x6 - 20, y4 + 130, 10);
         }
     }
 

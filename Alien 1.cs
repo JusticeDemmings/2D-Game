@@ -7,11 +7,9 @@ public class Alien1
 {
 	float x3;
 	float y1;
-
-	Vector2
 	public void Setup()
 	{
-
+		x3 = Random.Float(100, 800);
 	}
 
 	public void Update()

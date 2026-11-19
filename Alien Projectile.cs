@@ -1,8 +1,17 @@
 ﻿using System;
+using System.Numerics;
 
-public class Class1
+namespace MohawkGame2D;
+
+public class AlienPorjectile
 {
-	public Class1()
+	public void Setup()
 	{
+
+	}
+
+	public void Update()
+	{
+
 	}
 }
