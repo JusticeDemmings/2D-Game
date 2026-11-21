@@ -12,6 +12,10 @@ namespace MohawkGame2D
     {
         float x6 = 160;
         float y4 = 350;
+
+        Vector2 velocity;
+        Vector2 position;
+        Alien1[] alien1 = new Alien1[1];
         /// <summary>
         ///     Setup runs once before the game loop begins.
         /// </summary>
@@ -19,6 +23,21 @@ namespace MohawkGame2D
         {
             Window.SetTitle("When Aliens Invade");
             Window.SetSize(800, 600);
+            Window.ClearBackground(120, 239, 250);
+            Window.TargetFPS = 60;
+
+            for (int i = 0; i < alien1.Length; i += 1)
+            {
+                alien1[i] = new Alien1();
+                alien1[i].Setup();
+            }
+        }
+
+        /// <summary>
+        ///     Update runs every frame.
+        /// </summary>
+        public void Update()
+        {
             Window.ClearBackground(120, 239, 250);
 
             //Draw Sun
@@ -36,13 +55,7 @@ namespace MohawkGame2D
             Draw.SetLineSize(1);
             Draw.SetFillColor(150, 85, 20);
             Draw.Rectangle(0, 500, 800, 100);
-        }
 
-        /// <summary>
-        ///     Update runs every frame.
-        /// </summary>
-        public void Update()
-        {
             //Draw Player Character
             Draw.SetLineSize(0);
             Draw.SetFillColor(245, 165, 5);
@@ -86,6 +99,33 @@ namespace MohawkGame2D
             Draw.SetFillColor(179, 178, 177);
             Draw.Square(x6 - 50, y4 + 140, 10);
             Draw.Square(x6 - 20, y4 + 130, 10);
+
+            //Player Movement
+            if (Input.IsKeyboardKeyDown(KeyboardKey.A) == true)
+            {
+                //If it is, then:
+                x6 -= 100 * Time.DeltaTime;
+            }
+
+            if (Input.IsKeyboardKeyDown(KeyboardKey.D) == true)
+            {
+                //If it is, then:
+                x6 += 100 * Time.DeltaTime;
+            }
+
+            if(Input.IsKeyboardKeyDown(KeyboardKey.Space) == true)
+            {
+                //If it is, then:
+                y4 -= 100 * Time.DeltaTime;
+                Vector2 gravity = new Vector2(0, 10);
+                velocity += gravity * Time.DeltaTime;
+                position += velocity;
+            }
+
+            for (int i = 0; i < alien1.Length; i += 1)
+            {
+                alien1[i].Update();
+            }
         }
     }
 
