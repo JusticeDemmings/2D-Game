@@ -14,6 +14,11 @@ namespace MohawkGame2D
         float y4 = 350;
         Alien2[] alien2 = new Alien2[1];
         Cactus[] cactus = new Cactus[1];
+
+        float gravity = 800f;
+        float jumpforce = 400f;
+        float velocityY = 0f;
+        bool isGround = true;
         /// <summary>
         ///     Setup runs once before the game loop begins.
         /// </summary>
@@ -117,9 +122,42 @@ namespace MohawkGame2D
                 x6 += 100 * Time.DeltaTime;
             }
 
-            if(Input.IsKeyboardKeyDown(KeyboardKey.Space) == true)
+            if (Input.IsKeyboardKeyPressed(KeyboardKey.Space) == true)
             {
                 //If it is, then:
+                velocityY = -jumpforce;
+                isGround = false;
+            }
+
+            if (isGround == false)
+            {
+                velocityY += gravity * Time.DeltaTime;
+                y4 += velocityY * Time.DeltaTime;
+            }
+
+            if (y4 + 150 >= 500)
+            {
+                y4 = 350;
+                velocityY = 0;
+                isGround = true;
+            }
+
+            //Player Bounds
+            //Left
+            if (x6 - 80 < 0)
+            {
+                x6 = 80;
+            }
+            //Right
+            if (x6 + 60 > 800)
+            {
+                x6 = 740;
+            }
+            //Top
+            if (y4 < 0)
+            {
+                y4 = 0;
+                velocityY = 0;
             }
 
             for (int i = 0; i < alien2.Length; i += 1)

@@ -1,20 +1,25 @@
 ﻿using System;
+using System.Drawing;
 using System.Numerics;
 
 namespace MohawkGame2D;
 
-public class AlienPorjectile
+public class AlienProjectile
 {
+	Rectangle collisionBox;
 	Vector2 position;
 	float speed;
-	public void Setup()
+	public void Setup(Vector2 startPosition)
 	{
-		position = new Vector2();
 
-		position.X = startPosition.X;
-		position.Y = startPosition.Y;
+		position = startPosition;
 
 		speed = 2;
+
+		float x = position.X;
+		float y = position.Y;
+
+		collisionBox = new Rectangle((int)position.X, (int)position.Y, 5, 20);
 
 	}
 
