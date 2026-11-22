@@ -12,10 +12,8 @@ namespace MohawkGame2D
     {
         float x6 = 160;
         float y4 = 350;
-
-        Vector2 velocity;
-        Vector2 position;
-        Alien1[] alien1 = new Alien1[1];
+        Alien2[] alien2 = new Alien2[1];
+        Cactus[] cactus = new Cactus[1];
         /// <summary>
         ///     Setup runs once before the game loop begins.
         /// </summary>
@@ -26,10 +24,16 @@ namespace MohawkGame2D
             Window.ClearBackground(120, 239, 250);
             Window.TargetFPS = 60;
 
-            for (int i = 0; i < alien1.Length; i += 1)
+            for (int i = 0; i < alien2.Length; i += 1)
             {
-                alien1[i] = new Alien1();
-                alien1[i].Setup();
+                alien2[i] = new Alien2();
+                alien2[i].Setup();
+            }
+
+            for (int i = 0; i < cactus.Length; i += 1)
+            {
+                cactus[i] = new Cactus();
+                cactus[i].Setup();
             }
         }
 
@@ -116,15 +120,16 @@ namespace MohawkGame2D
             if(Input.IsKeyboardKeyDown(KeyboardKey.Space) == true)
             {
                 //If it is, then:
-                y4 -= 100 * Time.DeltaTime;
-                Vector2 gravity = new Vector2(0, 10);
-                velocity += gravity * Time.DeltaTime;
-                position += velocity;
             }
 
-            for (int i = 0; i < alien1.Length; i += 1)
+            for (int i = 0; i < alien2.Length; i += 1)
             {
-                alien1[i].Update();
+                alien2[i].Update();
+            }
+
+            for (int i = 0; i < cactus.Length; i += 1)
+            {
+                cactus[i].Update();
             }
         }
     }
