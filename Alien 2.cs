@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Numerics;
 
 namespace MohawkGame2D;
@@ -7,11 +8,15 @@ public class Alien2
 {
 	Vector2 position;
 	float speed;
+	float shootTimer;
+
+	List<AlienProjectile> projectiles = new List<AlienProjectile>();
 
 	public void Setup()
 	{
 		position = new Vector2(860, 40);
 		speed = 1;
+		shootTimer = 0;
 	}
 
 	public void Update()
@@ -21,6 +26,21 @@ public class Alien2
 		if (position.X < -60)
 		{
 			position.X = 860;
+		}
+
+		shootTimer += Time.DeltaTime;
+
+		if (shootTimer >= 2)
+		{
+			AlienProjectile projectile = new AlienProjectile();
+
+			projectiles.Add(projectile);
+
+			shootTimer = 0;
+
+		foreach (AlienProjectile projectile in projectiles)
+		{
+				projectile.Update();
 		}
 
 		Draw.SetLineSize(0);
