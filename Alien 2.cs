@@ -10,7 +10,7 @@ public class Alien2
 	float speed;
 	float shootTimer;
 
-	List<AlienProjectile> projectiles = new List<AlienProjectile>();
+	public List<AlienProjectile> projectiles = new List<AlienProjectile>();
 
 	public void Setup()
 	{
@@ -34,15 +34,17 @@ public class Alien2
 		{
 			AlienProjectile projectile = new AlienProjectile();
 
+			projectile.Setup(position);
+
 			projectiles.Add(projectile);
 
 			shootTimer = 0;
-
-			foreach (AlienProjectile alienprojectile in projectiles)
-			{
-				projectile.Update();
-			}
 		}
+
+        foreach (AlienProjectile alienprojectile in projectiles)
+        {
+            alienprojectile.Update();
+        }
 
         Draw.SetLineSize(0);
         Draw.SetFillColor(Color.Magenta);

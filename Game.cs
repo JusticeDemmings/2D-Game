@@ -1,5 +1,6 @@
 ﻿// Include the namespaces (code libraries) you need below.
 using System;
+using System.Drawing;
 using System.Numerics;
 
 // The namespace your code is in.
@@ -10,6 +11,11 @@ namespace MohawkGame2D
     /// </summary>
     public class Game
     {
+        //Game Timer
+        float gameTimer = 0f;
+        float winTime = 20f;
+
+        Rectangle collisionBox;
         float x6 = 160;
         float y4 = 350;
         Alien2[] alien2 = new Alien2[1];
@@ -19,6 +25,36 @@ namespace MohawkGame2D
         float jumpforce = 400f;
         float velocityY = 0f;
         bool isGround = true;
+        bool gameOver = false;
+        bool win = false;
+
+        public void RestartGame()
+        {
+            // Reset player
+            x6 = 160;
+            y4 = 350;
+
+            // Reset jumping
+            velocityY = 0;
+            isGround = true;
+
+            // Reset game states
+            gameOver = false;
+            win = false;
+
+            // Reset cactus
+            for (int i = 0; i < cactus.Length; i++)
+            {
+                cactus[i].Setup();
+            }
+
+            // Reset aliens
+            for (int i = 0; i < alien2.Length; i++)
+            {
+                alien2[i].Setup();
+            }
+        }
+
         /// <summary>
         ///     Setup runs once before the game loop begins.
         /// </summary>
@@ -82,8 +118,6 @@ namespace MohawkGame2D
             Draw.Square(x6 - 70, y4 + 100, 10);
             Draw.Rectangle(x6 - 80, y4 + 90, 30, 10);
             Draw.Rectangle(x6 - 80, y4 + 80, 20, 10);
-            Draw.SetFillColor(Color.Red);
-            Draw.Square(x6 + 10, y4 + 20, 10);
             //Draw Robotics
             Draw.SetLineSize(1);
             Draw.SetFillColor(179, 178, 177);
@@ -98,6 +132,9 @@ namespace MohawkGame2D
             Draw.Rectangle(x6 - 30, y4 + 100, 20, 10);
             Draw.Square(x6 - 60, y4 + 100, 10);
             Draw.Rectangle(x6 - 80, y4 + 60, 10, 20);
+            Draw.SetLineSize(0);
+            Draw.SetFillColor(Color.Red);
+            Draw.Square(x6 + 10, y4 + 20, 10);
             //Draw Legs
             Draw.SetLineSize(0);
             Draw.SetFillColor(245, 165, 5);
@@ -154,9 +191,9 @@ namespace MohawkGame2D
                 x6 = 740;
             }
             //Top
-            if (y4 < 0)
+            if (y4 < 90)
             {
-                y4 = 0;
+                y4 = 90;
                 velocityY = 0;
             }
 
@@ -168,6 +205,51 @@ namespace MohawkGame2D
             for (int i = 0; i < cactus.Length; i += 1)
             {
                 cactus[i].Update();
+            }
+
+            //collisionBoxes
+            collisionBox = new Rectangle((int)(x6 - 80), (int)y4, 110, 150);
+
+            if (collisionBox.IntersectsWith(cactus[0].collisionBox))
+            {
+                gameOver = true;
+            }
+
+            foreach (AlienProjectile alienprojectile in alien2[0].projectiles)
+            {
+                if (collisionBox.IntersectsWith(alienprojectile.collisionBox))
+                {
+                    gameOver = true;
+                }
+            }
+
+            if (gameOver == true)
+            {
+                //Loss Screen
+                Window.ClearBackground(Color.Black);
+                
+                if (Input.IsKeyboardKeyPressed(KeyboardKey.R) == true)
+                {
+                    RestartGame();
+                }
+
+                return;
+            }
+
+            if (gameOver == false && win == false)
+            {
+                gameTimer += Time.DeltaTime;
+            }
+
+            if (gameTimer >= winTime)
+            {
+                //Win Screen
+                Window.ClearBackground(Color.Blue);
+
+                if (Input.IsKeyboardKeyPressed(KeyboardKey.R) == true)
+                {
+                    RestartGame();
+                }
             }
         }
     }

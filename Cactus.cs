@@ -6,27 +6,26 @@ namespace MohawkGame2D;
 
 public class Cactus
 {
-	Rectangle collisionBox;
 	Vector2 position;
 	float speed;
+	public Rectangle collisionBox;
 	
 	public void Setup()
 	{
 		position = new Vector2(800, 400);
 		speed = 3;
-		collisionBox = new Rectangle(800, 400, 60, 100);
 	}
 
 	public void Update()
 	{
         position.X -= speed;
 
-		collisionBox = new Rectangle(800, 400, 60, 100);
-
 		if (position.X < -60)
 		{
 			position.X = 800;
 		}
+
+		collisionBox = new Rectangle((int)position.X, 400, 60, 100);
 
         Draw.SetLineSize(0);
 		Draw.SetFillColor(Color.Green);
@@ -40,5 +39,7 @@ public class Cactus
 		Draw.Rectangle(position.X + 25, 400, 1, 100);
 		Draw.Rectangle(position.X + 35, 400, 1, 100);
 		Draw.Rectangle(position.X + 55, 410, 1, 30);
-	}
+
+        collisionBox = new Rectangle((int)position.X, 400, 60, 100);
+    }
 }

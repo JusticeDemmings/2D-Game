@@ -6,18 +6,15 @@ namespace MohawkGame2D;
 
 public class AlienProjectile
 {
-	Rectangle collisionBox;
+	public Rectangle collisionBox;
 	Vector2 position;
 	float speed;
-	public void Setup(Vector2 startPosition)
+	public void Setup(Vector2 alienPosition)
 	{
 
-		position = startPosition;
+		position = new Vector2(alienPosition.X + 40, alienPosition.Y + 70);
 
-		speed = 2;
-
-		float x = position.X;
-		float y = position.Y;
+		speed = 1;
 
 		collisionBox = new Rectangle((int)position.X, (int)position.Y, 5, 20);
 
@@ -26,6 +23,8 @@ public class AlienProjectile
 	public void Update()
 	{
 		position.Y += speed;
+
+		collisionBox = new Rectangle((int)position.X, (int)position.Y, 5, 20);
 
 		Draw.SetLineSize(0);
 		Draw.SetFillColor(Color.Red);
