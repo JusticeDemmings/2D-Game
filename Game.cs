@@ -60,7 +60,7 @@ namespace MohawkGame2D
         /// </summary>
         public void Setup()
         {
-            Window.SetTitle("When Aliens Invade");
+            Window.SetTitle("When Aliens Invade.");
             Window.SetSize(800, 600);
             Window.ClearBackground(120, 239, 250);
             Window.TargetFPS = 60;
